@@ -1,10 +1,24 @@
-var express = require("express");
-var app = express();
-
-app.get("/url", (req, res, next) => {
- res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+const express = require("express");
+const app = express();
+const port = 3000;
+const programmingLanguagesRouter = require("./routes/programmingLanguages");
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.get("/", (req, res) => {
+  res.json({ message: "ok" });
 });
-
-app.listen(3000, () => {
- console.log("Server running on port 3000");
+app.use("/programming-languages", programmingLanguagesRouter);
+/* Error handler middleware */
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  console.error(err.message, err.stack);
+  res.status(statusCode).json({ message: err.message });
+  return;
+});
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
