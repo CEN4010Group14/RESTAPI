@@ -1,0 +1,13 @@
+USE books;
+SET FOREIGN_KEY_CHECKS = 0;
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
+LOAD DATA INFILE 'c:/ProgramData/MySQL/MySQL Server 8.0/Uploads/books.csv' 
+replace
+INTO TABLE books 
+FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(ISBN, `Name`, Price,Rating , GenreId, PublisherId, `Year`, Copies, `Description`);
+SET FOREIGN_KEY_CHECKS = 1;
+SET GLOBAL FOREIGN_KEY_CHECKS=1;
