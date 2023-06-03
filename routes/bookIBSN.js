@@ -6,7 +6,7 @@ const books = require('../services/books');
 router.get('/', async function(req, res, next) {
     try {
         const { ISBN } = req.query
-        res.json(await books.getBook(ISBN));
+        res.json(await books.getBookByISBN(ISBN));
     } catch (err) {
         console.error(`Error while getting Book by ISBN `, err.message);
         next(err);

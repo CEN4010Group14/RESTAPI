@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const getBookByISBNRouter = require("./routes/books");
+const getBookByISBNRouter = require("./routes/bookIBSN");
+const getBooksByAuthorRouter = require("./routes/bookAuthor");
 app.use(express.json());
 app.use(
     express.urlencoded({
@@ -9,12 +10,10 @@ app.use(
 );
 getBookByISBNRouter.use(express.json());
 
-// app.get("/getBookByISBN", (req, res) =>{
-//  //res.json(["FUCK","MFUCK","Michael","Ginger","Food"])
-//  getBookByISBNRouter.get("/")
-// });
 
-app.use("/getBookByISBN", getBookByISBNRouter);
+
+app.use("/getBookByISBN", getBookByISBNRouter)
+app.use("/getBooksByAuthor", getBooksByAuthorRouter)
 app.get("/url", (req, res, next) => {
  res.json(["Tony","Lisa","Michael","Ginger","Food"]);
 });

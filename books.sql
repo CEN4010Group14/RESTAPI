@@ -1,6 +1,6 @@
-use books;
-drop table IF EXISTS books;
-create table books (
+use bookIBSN;
+drop table IF EXISTS bookIBSN;
+create table bookIBSN (
 id INT NOT NULL AUTO_INCREMENT primary key,
 ISBN BIGINT Not Null,
 `Name` varchar(256) NOT NULL,
@@ -18,6 +18,6 @@ PublisherId INT NOT NULL,
 Copies Integer NOT NULL,
 `Description` VARCHAR(2048) NOT NULL
 );
--- ALTER TABLE books ENGINE=MyISAM; 
--- CREATE INDEX genre_index ON books (GenreId ASC);  
+-- ALTER TABLE bookIBSN ENGINE=MyISAM;
+-- CREATE INDEX genre_index ON bookIBSN (GenreId ASC);
 

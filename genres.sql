@@ -1,4 +1,4 @@
-use books;
+use bookIBSN;
 drop table genres;
 CREATE TABLE genres (
 	id INT NOT NULL AUTO_INCREMENT primary key,

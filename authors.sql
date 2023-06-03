@@ -1,4 +1,4 @@
-use books;
+use bookIBSN;
 drop table authors;
 create table authors (
  id INT NOT NULL primary key,

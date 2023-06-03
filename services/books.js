@@ -3,7 +3,7 @@ const config = require('../config');
 
 
 
-async function getBook(isbn = 1){
+async function getBookByISBN(isbn = 1){
     const row = await db.query(
         `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating, GenreId, PublisherId, Year, Copies, Description FROM books.books b where b.ISBN=${isbn}`
     );
@@ -13,6 +13,16 @@ async function getBook(isbn = 1){
     }
 }
 
+async function getBooksByAuthor(authorID) {
+  const rows = await  db.query( `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating, GenreId, PublisherId, Year, Copies, Description FROM books.books b where b.id in 
+        (select BookId from book_authors ba where ba.AuthorId = ${authorID})`
+  );
+  return {
+      rows
+  }
+
+}
+
 module.exports = {
-    getBook
+    getBookByISBN, getBooksByAuthor
 }

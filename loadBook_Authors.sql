@@ -1,4 +1,4 @@
-USE books;
+USE bookIBSN;
 LOAD DATA INFILE 'c:/ProgramData/MySQL/MySQL Server 8.0/Uploads/book_authors.csv' 
 INTO TABLE book_authors
 FIELDS TERMINATED BY ',' 
