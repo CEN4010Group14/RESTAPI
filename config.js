@@ -4,8 +4,8 @@ const config = {
     host: "localhost",
     user: "root",
     password: "Password",
-    database: "todos",
-  },
-  listPerPage: 10,
+    database: "books",
+  }//,
+  //listPerPage: 10,
 };
 module.exports = config;
