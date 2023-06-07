@@ -5,7 +5,9 @@ const config = {
         user: "root",
         password: "P",
         database: "books",
+        multipleStatements: true,
     },
     listPerPage: 10,
+    multipleStatements: true,
 };
 module.exports = config;
