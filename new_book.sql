@@ -14,7 +14,7 @@ in FirstName varchar(128),
 in LastName varchar(128)
 )
 BEGIN
--- select Year_;
+select Year_;
 set @PublisherId = (select PublisherId from authors a where a.FirstName = FirstName and a.LastName = LastName);
 set @AuthorId = (select id from authors a where a.FirstName = FirstName and a.LastName = LastName);
 SET FOREIGN_KEY_CHECKS = 0;

@@ -25,6 +25,7 @@ async function getBooksByAuthor(authorId) {
 }
 
 async function newBook(book) {
+    console.log(`book name: ${book.name}`)
     await db.query(`call add_book(${book.ISBN}, ${book.Name}, ${book.Price}, ${book.Rating},${book.GenreId},
     ${book.Year}, ${book.Copies}, ${book.Description}, ${book.FirstName}, ${book.LastName})`)
     const r = JSON.stringify({success: true})
@@ -33,6 +34,15 @@ async function newBook(book) {
     }
 }
 
+async function addAuthor(author) {
+    console.log(`author PublisherId: ${author.PublisherId}`)
+    await db.query(`call add_author(${author.FirstName}, ${author.LastName}, ${author.Biography}, ${author.PublisherId})`)
+    const r = JSON.stringify({success: true})
+    return {
+        r
+    }
+}
+
 module.exports = {
-    getBookByISBN, getBooksByAuthor, newBook
+    getBookByISBN, getBooksByAuthor, newBook, addAuthor
 }
