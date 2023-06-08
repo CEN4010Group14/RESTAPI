@@ -9,7 +9,13 @@ router.post('/',  upload.any(), async function(req, res, next) {
         //     = req.body
         // console.log(`LastName ${LastName}`)
         const r = await books.newBook(req.body)
-        console.log(r)
+        // console.log(`keys for r ${Object.keys(r)}`);
+        const re = /\d{13}/;
+        const m = r.r.match(re)[0];
+        res.status(201).send({
+            message: `Book ISBN ${m} added with success!`
+        })
+
     }
     catch (err) {
         console.error(`Error while posting new Book `, err.message);

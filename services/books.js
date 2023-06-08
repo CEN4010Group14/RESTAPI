@@ -25,19 +25,18 @@ async function getBooksByAuthor(authorId) {
 }
 
 async function newBook(book) {
-    console.log(`book name: ${book.name}`)
-    await db.query(`call add_book(${book.ISBN}, ${book.Name}, ${book.Price}, ${book.Rating},${book.GenreId},
-    ${book.Year}, ${book.Copies}, ${book.Description}, ${book.FirstName}, ${book.LastName})`)
-    const r = JSON.stringify({success: true})
+    // let rBookId = 0;
+    const bookId = await db.query(`call add_book(${book.ISBN}, ${book.Name}, ${book.Price}, ${book.Rating},${book.GenreId},
+    ${book.Year}, ${book.Copies}, ${book.Description}, ${book.FirstName}, ${book.LastName})`);
+    const r = JSON.stringify({success: true, bookId: bookId})
     return {
         r
     }
 }
 
 async function addAuthor(author) {
-    console.log(`author PublisherId: ${author.PublisherId}`)
-    await db.query(`call add_author(${author.FirstName}, ${author.LastName}, ${author.Biography}, ${author.PublisherId})`)
-    const r = JSON.stringify({success: true})
+    const id = await db.query(`call add_author(${author.FirstName}, ${author.LastName}, ${author.Biography}, ${author.PublisherId})`)
+    const r = JSON.stringify({success: true, id: id})
     return {
         r
     }
