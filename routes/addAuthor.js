@@ -5,7 +5,8 @@ const books = require('../services/books');
 router.post('/', async function(req, res, next) {
     try {
         const id = await books.addAuthor(req.body)
-        const re = /(?<=\\"id\_\\"\:)(\d+)/;
+        // const re = /(?<=\\"id\_\\"\:)(\d+)/;
+        const re = /\d+/;
         const m = id.r.match(re)[0];
         res.status(201).send({
             message: `Author id ${m} added with success!`
