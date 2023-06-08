@@ -2,21 +2,32 @@ const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
 
-async function getMultiple(page = 1){
+async function getGenre(genre){
   //const offset = helper.getOffset(page, config.listPerPage);
-  const rows = await db.query(
-    `SELECT * 
-    FROM genre`
-  );
-  const data = helper.emptyOrRows(rows);
-  //const meta = {page};
+  var data;
+  if(typeof genre !== 'undefined'){
+    data = await db.query(
+      `SELECT *  
+      FROM genre a
+      INNER JOIN books b
+      ON a.id=b.genre_id
+      WHERE a.name = '${genre}'
+      `
+    );
+  } else {
+    data = await db.query(
+      `SELECT * 
+      FROM genre`
+    );
+  }
+  
+  
 
   return {
-    data//,
-    //meta
+    data
   }
 }
 
 module.exports = {
-  getMultiple
+  getGenre
 }
