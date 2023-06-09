@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const getBookByISBNRouter = require("./routes/bookIBSN");
-const getBooksByAuthorRouter = require("./routes/bookAuthor");
-const postNewBookRouter = require("./routes/newBook")
-const postAddAuthorRouter = require("./routes/addAuthor")
+const getBookByISBNRouter = require("./sprint 2/routes/bookIBSN");
+const getBooksByAuthorRouter = require("./sprint 2/routes/bookAuthor");
+const postNewBookRouter = require("./sprint 2/routes/newBook")
+const postAddAuthorRouter = require("./sprint 2/routes/addAuthor")
 
 app.use(express.json());
 app.use(
