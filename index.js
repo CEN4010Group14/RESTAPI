@@ -1,24 +1,17 @@
-const express = require("express");
-const app = express();
-const port = 3000;
-const GenreRouter = require("./routes/genre");
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-app.get("/", (req, res) => {
-  res.json({ message: "ok" });
-});
-app.use("/genre", GenreRouter);
-/* Error handler middleware */
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  console.error(err.message, err.stack);
-  res.status(statusCode).json({ message: err.message });
-  return;
-});
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+const express = require('express')
+const app = express()
+const userRouter = require("./sprint 2/routes/users")
+const cartRouter = require("./sprint 2/routes/cart")
+
+app.use(express.static("public"))
+app.use(logger)
+
+app.use("/users", userRouter)
+app.use("/users/:id/shopping-cart", cartRouter)
+
+function logger(req, res, next) {
+    console.log(req.originalUrl)
+    next()
+}
+
+app.listen(3000)

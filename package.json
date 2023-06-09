@@ -1,25 +1,19 @@
 {
-  "name": "cen4010-restapi",
+  "name": "cen4010-restapi-aly",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon"
+    "devStart": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CEN4010Group14/RESTAPI.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CEN4010Group14/RESTAPI/issues"
-  },
-  "homepage": "https://github.com/CEN4010Group14/RESTAPI#readme",
+  "keywords": [],
+  "author": "aly",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "mysql2": "^3.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.22"
   }
 }
