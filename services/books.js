@@ -6,7 +6,8 @@ const express = require('express');
 
 async function getBookByISBN(isbn){
     const row = await db.query(
-        `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating, GenreId, PublisherId, Year, Copies, Description FROM books.books b where b.ISBN=${isbn}`
+        `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating,\
+            (select genre from genres g where g.id = GenreId) as Genre,(select publisher from publishers p where p.id = PublisherId) as Publisher, Year, Copies, Description FROM books.books b where b.ISBN=${isbn}`
     );
 
     return {
@@ -15,7 +16,8 @@ async function getBookByISBN(isbn){
 }
 
 async function getBooksByAuthor(authorId) {
-  const rows = await  db.query( `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating, GenreId, PublisherId, Year, Copies, Description FROM books.books b where b.id in 
+  const rows = await  db.query( `SELECT id, ISBN, Name,CONCAT("$", CONVERT(ROUND(Price,2), CHAR)) as Price, ROUND(Rating, 4) as Rating,\
+       (select genre from genres g where g.id = GenreId) as Genre, (select publisher from publishers p where p.id = PublisherId) as Publisher, Year, Copies, Description FROM books.books b where b.id in 
         (select BookId from book_authors ba where ba.AuthorId = ${authorId})`
   );
   return {
