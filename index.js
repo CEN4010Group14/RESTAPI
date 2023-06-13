@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const GenreRouter = require("./routes/genre");
+const EXPRERouter = require("./routes/expre")
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -11,6 +12,7 @@ app.use(
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
+app.use("/expre", EXPRERouter);
 app.use("/genre", GenreRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
