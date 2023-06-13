@@ -1,0 +1,6 @@
+USE shopping_cart;
+DROP TABLE TABLE IF EXISTS shopping_cart;
+CREATE TABLE shopping_cart (
+    bookid INT NOT NULL FOREIGN KEY REFERENCES books(id) ON DELETE CASCADE,
+    userid INT NOT NULL FOREIGN KEY REFERENCES users(id) ON DELETE CASCADE
+);
