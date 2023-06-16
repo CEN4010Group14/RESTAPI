@@ -49,3 +49,12 @@ INSERT INTO book_authors (book_id,author_id)
 VALUES 
 ('6','2')
 ;
+
+INSERT INTO books (id,isbn,name,price,genre_id,year,copies_sold,description,publisher_id,rating)
+VALUES 
+('7','0-5326-6421-3','Touch of Fog','21.68','2','1998','14504','Lets all be unique together until we realise we are all the same.','3','2.24'),
+('8','0-1422-4010-9','One Bride, Two Bride','61.04','1','2005','156010','Beach-combing replaced wine tasting as his new obsession.','2','1.25'),
+('9','0-1923-0426-7','Lure the Night','81.67','1','1888','8945','I thought red would have felt warmer in summer but I didnt think about the equator.','4','3.55'),
+('10','0-8725-3905-9','Inferno Hearts','6.42','2','2095','11651','The childs favorite Christmas gift was the large box her fathers lawnmower came in.','5','2.25'),
+('11','0-1574-9671-6','Behemoth Fading','4.57','1','2006','26504','The opportunity of a lifetime passed before him as he tried to decide between a cone or a cup.','1','3.86')
+;

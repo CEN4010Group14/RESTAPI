@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const GenreRouter = require("./routes/genre");
+const TopSellerRouter = require("./routes/topsellers");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 app.use("/genre", GenreRouter);
+app.use("/topsellers", TopSellerRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
