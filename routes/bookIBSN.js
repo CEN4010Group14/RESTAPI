@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const books = require('../services/books');
-const {fa} = require("faker/lib/locales");
 
 /* GET book by ISBN */
 router.get('/', async function(req, res, next) {
