@@ -3,8 +3,9 @@ const config = {
     /* don't expose password or any sensitive info, done only for demo */
     host: "localhost",
     user: "root",
-    password: "root",
-    database: "BookstoreRatings",
-  }
+    password: "Password",
+    database: "books",
+  }//,
+  //listPerPage: 10,
 };
 module.exports = config;

@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const GenreRouter = require("./routes/genre");
-const commentsRouter = require('./routes/commentRoute');
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -14,9 +13,6 @@ app.get("/", (req, res) => {
 });
 app.use("/genre", GenreRouter);
 /* Error handler middleware */
-
-app.use('/comments', commentsRouter);
-
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
