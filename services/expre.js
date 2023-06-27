@@ -24,12 +24,37 @@ const config = require('../config');
 
 
 
+
 async function getByid(id){
     const row = await db.query(`SELECT * FROM users WHERE id=${id}`);
     return {
         row
     }
 }
+
+async function createCreditCard(username, creditCard) {
+  try {
+    // Retrieve user ID based on username
+    const user = await db.query('SELECT id FROM users WHERE username = ?', [username]);
+    if (user.length === 0) {
+      throw new Error('User not found');
+    }
+    const userId = user[0].id;
+
+    // Insert credit card into database
+    await db.query('INSERT INTO credit_cards (user_id, card_number, expiration_date) VALUES (?, ?, ?)', [
+      userId,
+      creditCard.cardNumber,
+      creditCard.expirationDate
+    ]);
+  } catch (err) {
+    throw err;
+  }
+}
+
+module.exports = {
+  createCreditCard
+};
 
 
 
