@@ -17,6 +17,22 @@ async function getComments(bookId) {
   }
 }
 
+
+async function createComment(comment, userId, bookId) {
+  const datestamp = new Date().toISOString().split('T')[0];
+  const query = 'INSERT INTO Comments (Comment, Datestamp, UserId, BookId) VALUES (?, ?, ?, ?)';
+  const params = [comment, datestamp, userId, bookId];
+
+  const result = await db.query(query, params);
+  return result;
+}
+
+
+
+
+
+
 module.exports = {
   getComments,
+  createComment
 };

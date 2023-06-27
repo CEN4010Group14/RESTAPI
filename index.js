@@ -9,6 +9,7 @@ const postNewBookRouter = require("./routes/newBook")
 const postAddAuthorRouter = require("./routes/addAuthor");
 const EXPRERouter = require("./routes/expre");
 const TopSellerRouter = require("./routes/topsellers");
+const newCommentRouter = require("./routes/newComment");
 
 app.use(express.json());
 app.use(
@@ -26,9 +27,10 @@ app.use("/newBook", postNewBookRouter);
 app.use("/addAuthor", postAddAuthorRouter)
 app.use("/expre", EXPRERouter);
 app.use("/topsellers", TopSellerRouter);
-/* Error handler middleware */
 app.use('/comments', commentsRouter);
+app.use('/newComment', newCommentRouter);
 
+/* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
