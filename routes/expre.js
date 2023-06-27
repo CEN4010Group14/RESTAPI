@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const service = require('../services/expre');
+const { createCreditCard } = require('../services/creditCardService');
 /* GET */
 router.get('/', async function(req, res, next) {
     try {
@@ -10,5 +11,17 @@ router.get('/', async function(req, res, next) {
         next(err);
     }
 });
+// POST /api/credit-cards
+router.post('/', async (req, res) => {
+  try {
+    const { username, creditCard } = req.body;
+    await createCreditCard(username, creditCard);
+    res.sendStatus(201);
+  } catch (err) {
+    console.error('Error creating credit card:', err);
+    res.status(500).send('Error creating credit card');
+  }
+});
+
 
 module.exports = router;
