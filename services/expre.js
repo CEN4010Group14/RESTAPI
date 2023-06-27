@@ -2,6 +2,7 @@ const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
 
+
 // app.post('/post', (req, res) => {
 //     const id = req.body.id;
 //     const username = req.body.username;
@@ -30,29 +31,29 @@ async function getByid(id){
         row
     }
 }
-async function createCreditCard(username, creditCard) {
+async function createCreditCard(username,cardNumber,expirationDate) {
     try {
       // Retrieve user ID based on username
-      const user = await db.query('SELECT id FROM users WHERE username = ?', [username]);
-      if (user.length === 0) {
+      const users = await db.query('SELECT id FROM users WHERE username = ?', [username]);
+      if (users.length === 0) {
         throw new Error('User not found');
       }
-      const userId = user[0].id;
+      
+      const userId = users[0].id;
+      
   
       // Insert credit card into database
       await db.query('INSERT INTO credit_cards (user_id, card_number, expiration_date) VALUES (?, ?, ?)', [
         userId,
-        creditCard.cardNumber,
-        creditCard.expirationDate
+        cardNumber,
+        expirationDate
       ]);
     } catch (err) {
       throw err;
     }
   }
   
-  module.exports = {
-    createCreditCard
-  };
+  
 
 
 // app.listen(3000,(err)=>{
@@ -110,5 +111,5 @@ async function createCreditCard(username, creditCard) {
 //       });
 
     module.exports = {
-        getByid
+        getByid,createCreditCard
     }
