@@ -10,6 +10,7 @@ const postAddAuthorRouter = require("./routes/addAuthor");
 const EXPRERouter = require("./routes/expre");
 const TopSellerRouter = require("./routes/topsellers");
 const newCommentRouter = require("./routes/newComment");
+const cartRouter = require("./routes/cart");
 
 app.use(express.json());
 app.use(
@@ -20,6 +21,7 @@ app.use(
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
+app.use("/users", cartRouter);
 app.use("/genre", GenreRouter);
 app.use("/getBookByISBN", getBookByISBNRouter);
 app.use("/getBooksByAuthor", getBooksByAuthorRouter);
