@@ -1,7 +1,7 @@
 const db = require('./db');
 const config = require('../config');
 const express = require('express');
-
+const util = require('util');
 
 
 async function getBookByISBN(isbn){
@@ -28,9 +28,20 @@ async function getBooksByAuthor(authorId) {
 
 async function newBook(book) {
     // let rBookId = 0;
+    // console.log("are you alive?");
     const bookId = await db.query(`call add_book(${book.ISBN}, ${book.Name}, ${book.Price}, ${book.Rating},${book.GenreId},
     ${book.Year}, ${book.Copies}, ${book.Description}, ${book.FirstName}, ${book.LastName})`);
-    const r = JSON.stringify({success: true, bookId: bookId})
+    let error = null;
+    try {
+        error = book[0]['0']['Error author not found']
+        // console.log(Object.keys(bookId[0]))
+        // console.log(bookId[0]['0'])
+        // console.log(util.inspect(bookId[0], false, true, true ));
+    }
+    catch (e) {
+        // console.log(`newBook function e ${e}`)
+    }
+    const r = (error != null)  ? JSON.stringify({success: false, error}) : JSON.stringify({success: true, bookId: bookId})
     return {
         r
     }
