@@ -1,10 +1,9 @@
-Tutorials:
+# Tutorials
 - https://blog.logrocket.com/build-rest-api-node-express-mysql/
 - https://www.youtube.com/watch?v=SccSCuHhOw0
 
 
-Feature Checklist:
-Book Browsing and Sorting
+# Book Browsing and Sorting
 ## Retrieve List of Books by Genre
 - Logic: Given a specific genre, return a list of books for that genre.
 - HTTP Request Type: GET
@@ -28,7 +27,7 @@ sold would be #1)
 - Response Data: None
 
 
-Profile Management
+# Profile Management
 ## Create a User with username, password and optional fields (name, email address, home address)
 - Logic: Provided the user fields, create the user in the database.
 - HTTP Request Type: POST
@@ -52,7 +51,7 @@ with the new param value.
 - Response Data: None 
 
 
-Shopping Cart
+# Shopping Cart
 ## Retrieve the subtotal price of all items in the user’s shopping cart.
 - Logic: Give a user Id,return the subtotal of the books in the cart.
 - HTTP Request Type: GET
@@ -75,7 +74,7 @@ Shopping Cart
 - Response Data: None 
 
 
-Book Details
+# Book Details
 ## An administrator must be able to create a book with the book ISBN, book name, book description, 
 price, author, genre, publisher , year published and copies sold.
 - Logic: Given a Book’s info, add it to the system.
@@ -100,7 +99,7 @@ publisher
 - Response Data: JSON list of Book Objects 
 
 
-Book Rating and Commenting
+# Book Rating and Commenting
 ## Must be able to create a rating for a book by a user on a 5 star scale with a datestamp
 - Logic: Create a rating for a book given by a user.
 - HTTP Request Type: POST
@@ -123,7 +122,7 @@ Book Rating and Commenting
 - Response Data: Computed Average rating (decimal) 
 
 
-Wish List Management
+# Wish List Management
 ## Must be able to create a wishlist of books that belongs to user and has a unique name
 - Logic: Given a user Id and a wish list name, create the wishlist.
 - HTTP Request Type: POST
@@ -144,13 +143,3 @@ Wish List Management
 - HTTP Request Type: GET
 - Parameters Sent: Wishlist Id
 - Response Data: JSON LIST of books in the user’s wishlist. 
-
-UML Diagrams:
-book table
-id,isbn,copies_sold,rating,publisher,price
-
-genre table
-id,bookid,genre
-
-author table
-id,bookid,firstname,lastname
