@@ -5,27 +5,27 @@ https://www.youtube.com/watch?v=SccSCuHhOw0
 
 Feature Checklist:
 Book Browsing and Sorting
-□ Retrieve List of Books by Genre
-o Logic: Given a specific genre, return a list of books for that genre.
-o HTTP Request Type: GET
-o Parameters Sent: Genre
-o Response Data: JSON List of book objects
-□ Retrieve List of Top Sellers (Top 10 books that have sold the most copied)
-o Logic: Return the top 10 books that have sold the most copies in descending order (most copies 
+## Retrieve List of Books by Genre
+- Logic: Given a specific genre, return a list of books for that genre.
+- HTTP Request Type: GET
+- Parameters Sent: Genre
+- Response Data: JSON List of book objects
+## Retrieve List of Top Sellers (Top 10 books that have sold the most copied)
+- Logic: Return the top 10 books that have sold the most copies in descending order (most copies 
 sold would be #1)
-o HTTP Request Type: GET
-o Parameters Sent: None
-o Response Data : JSON List of book objects
-□ Retrieve List of Books for a particular rating and higher
-o Logic: Filter by rating higher or equal to the passed rating value.
-o HTTP Request Type: GET
-o Parameters Sent: Rating
-o Response Data: JSON List of book objects
-□ Discount books by publisher.
-o Logic: Update the price of all books under a publisher by a discount percent.
-o HTTP Request Type: PUT or PATCH
-o Parameters Sent: Discount percent, Publisher
-o Response Data: None
+- HTTP Request Type: GET
+- Parameters Sent: None
+- Response Data : JSON List of book objects
+## Retrieve List of Books for a particular rating and higher
+- Logic: Filter by rating higher or equal to the passed rating value.
+- HTTP Request Type: GET
+- Parameters Sent: Rating
+- Response Data: JSON List of book objects
+## Discount books by publisher.
+- Logic: Update the price of all books under a publisher by a discount percent.
+- HTTP Request Type: PUT or PATCH
+- Parameters Sent: Discount percent, Publisher
+- Response Data: None
 
 
 Profile Management
