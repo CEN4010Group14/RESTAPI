@@ -17,8 +17,14 @@ async function getCart(id) {
     return book
 }
 
+async function getName(id) {
+    const [rows] = await db.query('SELECT `fname` FROM `users` WHERE `id` = ?', [id])
+    return rows.fname
+}
+
 module.exports = {
     addBook,
     getBook,
-    getCart
+    getCart,
+    getName
 }
