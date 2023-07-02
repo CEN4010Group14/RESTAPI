@@ -1,11 +1,10 @@
 const express = require('express')
 const router= express.Router()
-const users = require('../services/users')
 const cart = require('../services/shoppingcart')
 
 
 router.get('/:id/cart/subtotal', async function(req, res) {
-    const name = await users.getName(req.params.id)
+    const name = await cart.getName(req.params.id)
     const books = await cart.getCart(req.params.id)
 
     let buffer = (name + "'s Shopping Cart")
@@ -27,7 +26,7 @@ router.get('/:id/cart/subtotal', async function(req, res) {
 })
 
 router.get('/:id/cart', async function(req, res) {
-    const name = await users.getName(req.params.id)
+    const name = await cart.getName(req.params.id)
     const books = await cart.getCart(req.params.id)
 
     let buffer = (name + "'s Shopping Cart")
