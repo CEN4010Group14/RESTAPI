@@ -33,15 +33,13 @@ async function newBook(book) {
     ${book.Year}, ${book.Copies}, ${book.Description}, ${book.FirstName}, ${book.LastName})`);
     let error = null;
     try {
-        error = book[0]['0']['Error author not found']
-        // console.log(Object.keys(bookId[0]))
-        // console.log(bookId[0]['0'])
-        // console.log(util.inspect(bookId[0], false, true, true ));
+        // console.log(`inspect bookId[0] ${util.inspect(bookId[0], false, true, true )}`);
+        error = bookId[0]['0']['Error author not found']
     }
     catch (e) {
-        // console.log(`newBook function e ${e}`)
+        // console.log(`newBook error e ${e}`)
     }
-    const r = (error != null)  ? JSON.stringify({success: false, error}) : JSON.stringify({success: true, bookId: bookId})
+    const r = (error != null)  ? JSON.stringify({success: false, message:error}) : JSON.stringify({success: true, bookId: bookId})
     return {
         r
     }

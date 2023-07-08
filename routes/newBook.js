@@ -12,6 +12,8 @@ router.post('/',  async function(req, res, next) {
         try {
             // console.log(`JSON.parse(r.r) ${ Object.keys(JSON.parse(r.r))}`);
             const j = JSON.parse(r.r);
+            // console.log(`j.message ${j.message}`);
+            // console.log(`j.success ${j.success}`);
             if (!j.success) {
                 res.status(404).send({message: j.message})
                 return
@@ -32,9 +34,9 @@ router.post('/',  async function(req, res, next) {
 
     }
     catch (err) {
-        res.status(404).send(err);
-        console.error(`Error while posting new Book `, err.message);
-        next(err);
+        res.status(404).send(err.message);
+        // console.error(`Error while posting new Book `, err.message);
+        // next(err);
     }
 
 });
