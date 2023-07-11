@@ -11,6 +11,7 @@ const EXPRERouter = require("./routes/expre");
 const TopSellerRouter = require("./routes/topsellers");
 const newCommentRouter = require("./routes/newComment");
 const cartRouter = require("./routes/cart");
+const RatingRouter = require("./routes/rating");
 
 app.use(express.json());
 app.use(
@@ -31,6 +32,7 @@ app.use("/expre", EXPRERouter);
 app.use("/topsellers", TopSellerRouter);
 app.use('/comments', commentsRouter);
 app.use('/newComment', newCommentRouter);
+app.use('/rating', RatingRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
