@@ -12,6 +12,11 @@ const TopSellerRouter = require("./routes/topsellers");
 const newCommentRouter = require("./routes/newComment");
 const cartRouter = require("./routes/cart");
 const RatingRouter = require("./routes/rating");
+const getWishlistbyID = require('./routes/getwishlistById')
+const postIDRouter = require('./routes/postbooks.js')
+const getwishlists = require('./routes/getwishlist.js')
+const deleteBook = require('./routes/deletebook')
+
 
 app.use(express.json());
 app.use(
@@ -33,6 +38,11 @@ app.use("/topsellers", TopSellerRouter);
 app.use('/comments', commentsRouter);
 app.use('/newComment', newCommentRouter);
 app.use('/rating', RatingRouter);
+app.use("/new",postIDRouter);
+app.use("/remove", deleteBook)
+app.use('/wishlist',getwishlists);
+app.use("/getwishlist",getWishlistbyID);
+
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
