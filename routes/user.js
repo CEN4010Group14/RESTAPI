@@ -3,9 +3,9 @@ const router = express.Router()
 const users = require('../services/users')
 
 
-// router.get('/', async function (req, res) {
-//     res.send("Welcome Guest")
-// })
+router.get('/', async function (req, res) {
+    res.send("Welcome Guest")
+})
 
 router.post('/signup', async function(req, res) {
     var id = await addUser(req.body)
