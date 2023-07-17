@@ -45,10 +45,15 @@ router.get('/:id/cart', async function(req, res) {
     res.send(buffer)
 })
 
-// router.post('/:id/cart/addbook', async function(req, res) {
-//     const name = await users.getName(req.params.id)
-//     res.send(name + "'s Shopping Cart")
-// })
+router.post('/:id/cart/addbook',  async function(req, res) {
+    console.log(req.query.bookid)
+    const addBook = await cart.addBook(req.query.bookid, req.params.id)
+    const book = await cart.getBook(req.query.bookid)
+    const name = book.Name
+
+    res.status(201).send({
+        message: `${name}`
+})
 
 
 module.exports = router
