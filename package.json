@@ -1,0 +1,21 @@
+{
+  "name": "cen4010-restapi-aly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "aly",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.17.1",
+    "mysql2": "^3.3.4",
+    "mysql2-promise": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
