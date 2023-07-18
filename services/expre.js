@@ -3,33 +3,39 @@ const helper = require('../helper');
 const config = require('../config');
 
 
-// app.post('/post', (req, res) => {
-//     const id = req.body.id;
-//     const username = req.body.username;
-//     const password = req.body.password;
-//     const name = req.body.name;
-//     const email = req.body.email;
-//     const address = req.body.address;
-//
-//     db.query('INSERT INTO users values(?,?,?,?,?,?)',[id,username, password, name, email, address],(err, result)=>{
-//         if (err) {
-//             console.log(err);
-//         }else{
-//
-//         console.log('connected');
-//         }
-//
-//
-// })
 
 
+async function createUser(user) {
+  try {
+    const { username, password, name, email, home_address } = user;
 
+    // Replace undefined values with null
+    const usernameParam = username !== undefined ? username : null;
+    const passwordParam = password !== undefined ? password : null;
+    const nameParam = name !== undefined ? name : null;
+    const emailParam = email !== undefined ? email : null;
+    const homeAddressParam = home_address !== undefined ? home_address : null;
 
-async function getByid(id){
-    const row = await db.query(`SELECT * FROM users WHERE id=${id}`);
-    return {
-        row
+    const result = await db.query(
+      'INSERT INTO users (username, password, name, email, home_address) VALUES (?, ?, ?, ?, ?)',
+      [usernameParam, passwordParam, nameParam, emailParam, homeAddressParam]
+    );
+
+    // Check the result to ensure the user was successfully created
+    if (result.affectedRows === 1) {
+      console.log('User created successfully');
+    } else {
+      throw new Error('Failed to create user');
     }
+  } catch (err) {
+    throw err;
+  }
+}
+
+
+async function getUserByUsername(username) {
+  const row = await db.query(`SELECT * FROM users WHERE username = '${username}'`);
+  return row;
 }
 async function createCreditCard(username,cardNumber,expirationDate) {
     try {
@@ -54,62 +60,29 @@ async function createCreditCard(username,cardNumber,expirationDate) {
   }
   
   
+  async function updateUser(username, updatedFields) {
+    try {
+      // Generate the SET clause for the SQL query
+      const setClause = Object.keys(updatedFields)
+        .map(field => `${field} = ?`)
+        .join(', ');
+  
+      // Generate the parameter values for the SQL query
+      const values = Object.values(updatedFields);
+      values.push(username); // Add the username value at the end of the values array
+  
+      // Update the user in the database
+      await db.query(`UPDATE users SET ${setClause} WHERE username = ?`, values);
+    } catch (err) {
+      throw err;
+    }
+  }
+  
+  
 
 
-// app.listen(3000,(err)=>{
-//     if (err) {
-//         console.error('Failed to connect to MySQL:', err);
-//         return;
-//       }
-//       console.log('on port 3000');
-//     })
-//
-//     app.put('/users/:username', (req, res) => {
-//         const username = req.params.username;
-//         const { name, address } = req.body;
-//
-//         db.query('UPDATE users SET name = ?, address = ? WHERE username = ?', [name, address, username], (err, result) => {
-//           if (err) {
-//             console.log(err);
-//             res.status(500).send('Error updating user');
-//           } else {
-//             if (result.affectedRows === 0) {
-//               res.status(404).send('User not found');
-//             } else {
-//               res.sendStatus(200);
-//             }
-//           }
-//         });
-//       });
-//
-//       app.post('/users/:username/credit-cards', (req, res) => {
-//         const username = req.params.username;
-//         const { card_number, expiration_date } = req.body;
-//
-//         db.query('SELECT id FROM users WHERE username = ?', [username], (err, result) => {
-//           if (err) {
-//             console.log(err);
-//             res.status(500).send('Error creating credit card');
-//           } else {
-//             if (result.length === 0) {
-//               res.status(404).send('User not found');
-//             } else {
-//               const user_id = result[0].id;
-//
-//               db.query('INSERT INTO credit_cards (user_id, card_number, expiration_date) VALUES (?, ?, ?)', [user_id, card_number, expiration_date], (err, result) => {
-//                 if (err) {
-//                   console.log(err);
-//                   res.status(500).send('Error creating credit card');
-//                 } else {
-//                   console.log('Credit card created successfully');
-//                   res.sendStatus(201);
-//                 }
-//               });
-//             }
-//           }
-//         });
-//       });
+
 
     module.exports = {
-        getByid,createCreditCard
+      getUserByUsername,createCreditCard,updateUser,createUser
     }
