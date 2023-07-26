@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const DiscoutPublisherRouter = require("./routes/discountPublisher");
 const GenreRouter = require("./routes/genre");
 const commentsRouter = require('./routes/comments');
 const getBookByISBNRouter = require("./routes/bookIBSN");
@@ -19,6 +20,7 @@ const getwishlists = require('./routes/getwishlist.js')
 const deleteBook = require('./routes/deletebook')
 
 
+
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -28,6 +30,7 @@ app.use(
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
+app.use("/discountpublisher", DiscoutPublisherRouter);
 app.use("/users", cartRouter);
 app.use("/genre", GenreRouter);
 app.use("/getBookByISBN", getBookByISBNRouter);
@@ -44,6 +47,8 @@ app.use("/new",postIDRouter);
 app.use("/remove", deleteBook)
 app.use('/wishlist',getwishlists);
 app.use("/getwishlist",getWishlistbyID);
+app.use('/rating', RatingRouter);
+
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
