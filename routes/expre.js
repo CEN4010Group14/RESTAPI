@@ -31,8 +31,8 @@ router.get('/:username', async (req, res, next) => {
   }
 
 });
-// POST /api/credit-cards
-router.post('/', async (req, res) => {
+// POST /api/credit-cards/dive
+router.post('/dive', async (req, res) => {
     try {
       const { username, cardNumber, expirationDate} = req.body;
       console.log(cardNumber,expirationDate)
