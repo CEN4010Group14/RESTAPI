@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+
 const db = require("../config");
 const express = require ('express');
 
