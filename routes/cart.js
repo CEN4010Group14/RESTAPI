@@ -54,6 +54,17 @@ router.post('/:id/cart/addbook',  async function(req, res) {
     res.status(201).send({
         message: `${name}`
 })
+
+router.post('/:id/cart/deletebook',  async function(req, res) {
+    console.log(req.query.bookid)
+    const deleteBook = await cart.deleteBook(req.query.bookid, req.params.id)
+    const book = await cart.getBook(req.query.bookid)
+    const name = book.Name
+
+    res.status(201).send({
+        message: `${name} has been deleted`
+    })
+    
 })
 
 
