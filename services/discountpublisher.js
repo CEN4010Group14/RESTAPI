@@ -13,9 +13,7 @@ async function update(discount,publisher){
     );
   }
 
-  return {
-     data
-  }
+  return;
 }
 
 
