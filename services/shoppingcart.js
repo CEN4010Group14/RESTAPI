@@ -7,6 +7,11 @@ async function addBook(book, user) {
     return rows
 }
 
+async function deleteBook(bookid, userid) {
+    const rows = await db.query(`call deleteBook(${bookid}, ${userid})`)
+    return rows
+}
+
 async function getBook(bookid) {
     const book = await db.query('SELECT `Name`, `Price` FROM `books` WHERE `id` = ?', [bookid])
     return book
@@ -24,6 +29,7 @@ async function getName(id) {
 
 module.exports = {
     addBook,
+    deleteBook,
     getBook,
     getCart,
     getName
