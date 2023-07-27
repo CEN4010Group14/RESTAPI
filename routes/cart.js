@@ -55,6 +55,7 @@ router.post('/:id/cart/addbook',  async function(req, res) {
         message: `${name}`
     })
 })
+
 router.post('/:id/cart/deletebook',  async function(req, res) {
     console.log(req.query.bookid)
     const deleteBook = await cart.deleteBook(req.query.bookid, req.params.id)
